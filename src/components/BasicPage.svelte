@@ -1,6 +1,7 @@
 <script>
   import DataTable from "./DataTable.svelte";
   import routes from "../constants/routes.js";
+  import { base } from "$app/paths";
 
   export let name = "Undefined";
   export let players = [];
@@ -11,20 +12,20 @@
     <div class="navigation">
       {#each Object.entries(routes) as [key, value]}
         {#if name == key}
-          <a href={value} class="nav-a nav-selected">
-            <img class="nav-img" src={`/${key}.png`} alt={key}/>
+          <a href={`${base}${value}`} class="nav-a nav-selected">
+            <img class="nav-img" src={`${base}/${key}.png`} alt={key}/>
             <h3 style="color: white">{key}</h3>
           </a>
         {:else}
-          <a href={value} class="nav-a">
-            <img class="nav-img" src={`/${key}.png`} alt={key}/>
+          <a href={`${base}${value}`} class="nav-a">
+            <img class="nav-img" src={`${base}/${key}.png`} alt={key}/>
             <h3 style="color: white">{key}</h3>
           </a>
         {/if}
       {/each}
     </div>
     <div class="header-container">
-      <img class="main-img" src={`/${name}.png`} alt={name}/>
+      <img class="main-img" src={`${base}/${name}.png`} alt={name}/>
       <h1 style="color: white">{name}</h1>
     </div>
     <DataTable {name} {players}/>
